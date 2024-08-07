@@ -978,6 +978,36 @@ export interface ApiGlobalGlobal extends Schema.SingleType {
   };
 }
 
+export interface ApiTest2Test2 extends Schema.CollectionType {
+  collectionName: 'test2s';
+  info: {
+    singularName: 'test2';
+    pluralName: 'test2s';
+    displayName: 'test2';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    emi: Attribute.Email;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::test2.test2',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::test2.test2',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -1001,6 +1031,7 @@ declare module '@strapi/types' {
       'api::author.author': ApiAuthorAuthor;
       'api::category.category': ApiCategoryCategory;
       'api::global.global': ApiGlobalGlobal;
+      'api::test2.test2': ApiTest2Test2;
     }
   }
 }
